@@ -1,0 +1,30 @@
+{
+  "apps": [
+    {
+      "name": "koa-demo",
+      "script": "koa.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "root",
+      "host": "47.52.63.21",
+      "key": "./xianggang",
+      "port": "8020",
+      "ref": "origin/master",
+      "repo": "git@github.com:csq121605366/koa-demo.git",
+      "path": "/var/www/koa-demo",
+      "ssh_options": "StrictHostKeyChecking=no",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
